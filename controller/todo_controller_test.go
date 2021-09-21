@@ -58,7 +58,7 @@ func TestGetTodos_ExistTodo(t *testing.T) {
 
 func TestGetTodos_Error(t *testing.T) {
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("GET", "/todos", nil)
+	r := httptest.NewRequest("GET", "/todos/", nil)
 
 	target := NewTodoController(&test.MockTodoRepositoryError{})
 	target.GetTodos(w, r)
@@ -78,7 +78,7 @@ func TestGetTodos_Error(t *testing.T) {
 func TestPostTodo_OK(t *testing.T) {
 	json := strings.NewReader(`{"title":"test-title","content":"test-content"}`)
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("POST", "/todos", json)
+	r := httptest.NewRequest("POST", "/todos/", json)
 
 	target := NewTodoController(&test.MockTodoRepository{})
 	target.PostTodo(w, r)
@@ -86,7 +86,7 @@ func TestPostTodo_OK(t *testing.T) {
 	if w.Code != 201 {
 		t.Errorf("Response cod is %v", w.Code)
 	}
-	if w.Header().Get("Location") != r.Host+r.URL.Path+"/2" {
+	if w.Header().Get("Location") != r.Host+r.URL.Path+"2" {
 		t.Errorf("Location is %v", w.Header().Get("Location"))
 	}
 }
@@ -94,7 +94,7 @@ func TestPostTodo_OK(t *testing.T) {
 func TestPostTodo_Error(t *testing.T) {
 	json := strings.NewReader(`{"title":"test-title","contents":"test-content"}`)
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("POST", "/todos", json)
+	r := httptest.NewRequest("POST", "/todos/", json)
 
 	target := NewTodoController(&test.MockTodoRepositoryError{})
 	target.PostTodo(w, r)
