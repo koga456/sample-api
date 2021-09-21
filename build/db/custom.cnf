@@ -1,0 +1,11 @@
+[mysqld]
+lower_case_table_names=1
+explicit_defaults_for_timestamp=true
+
+skip_ssl
+character-set-server=utf8mb4
+collation-server=utf8mb4_bin
+init_connect='SET collation_connection = utf8mb4_bin; SET NAMES utf8mb4'
+
+[client]
+default_character_set=utf8mb4

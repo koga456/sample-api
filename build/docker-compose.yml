@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    image: sample-api-db
+    container_name: sample-api-db
+    build: db
+    environment:
+      MYSQL_ROOT_PASSWORD: todo-password
+      TZ: "UTC"
+    ports:
+      - "127.0.0.1:3306:3306"
+  api-server:
+    image: sample-api-server
+    container_name: sample-api-server
+    build:
+      context: ../
+      dockerfile: ./build/sample-api/Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - db
