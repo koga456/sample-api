@@ -60,7 +60,7 @@ func (tc *todoController) PostTodo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Location", r.Host+r.URL.Path+"/"+strconv.Itoa(id))
+	w.Header().Set("Location", r.Host+r.URL.Path+strconv.Itoa(id))
 	w.WriteHeader(201)
 }
 
