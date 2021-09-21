@@ -25,7 +25,7 @@ func NewTodoRepository() TodoRepository {
 func (tr *todoRepository) GetTodos() (todos []entity.TodoEntity, err error) {
 	todos = []entity.TodoEntity{}
 	rows, err := Db.
-		Query("SELECT id, title, content FROM todo ORDER BY created_at DESC")
+		Query("SELECT id, title, content FROM todo ORDER BY id DESC")
 	if err != nil {
 		log.Print(err)
 		return
@@ -50,7 +50,7 @@ func (tr *todoRepository) InsertTodo(todo entity.TodoEntity) (id int, err error)
 		log.Print(err)
 		return
 	}
-	err = Db.QueryRow("SELECT id FROM todo ORDER BY created_at DESC LIMIT 1").Scan(&id)
+	err = Db.QueryRow("SELECT id FROM todo ORDER BY id DESC LIMIT 1").Scan(&id)
 	return
 }
 
