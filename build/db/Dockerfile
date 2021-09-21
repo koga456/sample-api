@@ -1,4 +1,4 @@
-FROM library/mysql:8.0.25
+FROM --platform=linux/amd64 library/mysql:8.0.25
 
 ENV MYSQL_DATABASE todo
 
