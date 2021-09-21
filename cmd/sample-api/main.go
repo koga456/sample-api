@@ -11,10 +11,6 @@ var tr = repository.NewTodoRepository()
 var tc = controller.NewTodoController(tr)
 var ro = controller.NewRouter(tc)
 
-func init() {
-	repository.InitDB()
-}
-
 func main() {
 	server := http.Server{
 		Addr: ":8080",

@@ -7,7 +7,7 @@ import (
 
 var Db *sql.DB
 
-func InitDB() {
+func init() {
 	var err error
 	dataSourceName := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=true",
 		"todo-app", "todo-password", "sample-api-db:3306", "todo",
